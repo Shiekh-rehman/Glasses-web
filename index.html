@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Glasses Store</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      color: #000;
+    }
+
+    nav {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 1000;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      flex-wrap: wrap;
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #000000;
+    }
+
+    .navbar ul {
+      display: flex;
+      list-style: none;
+    }
+
+    .navbar ul li {
+      margin-left: 20px;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: #000000;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background: #000000;
+      margin: 4px 0;
+      transition: 0.4s;
+    }
+
+    @media (max-width: 768px) {
+      .navbar ul {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+      }
+
+      .navbar ul.active {
+        display: flex;
+        background: rgba(255, 255, 255, 0.1);
+        margin-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+ .carousel-caption {
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .carousel-caption h5 {
+      font-size: 2rem;
+    }
+
+    .carousel-caption p {
+      font-size: 1.2rem;
+    }
+
+    .carousel img {
+      object-fit: cover;
+      height: 100vh;
+    }
+
+    @media (max-width: 768px) {
+      .carousel-caption h5 {
+        font-size: 1.5rem;
+      }
+
+      .carousel-caption p {
+        font-size: 1rem;
+      }
+    }
+
+
+/* Section Styling */
+.about-section {
+  padding: 100px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('https://images.unsplash.com/photo-1591076482161-7b26c03a1da3?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glass Box */
+.about-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 800px;
+  text-align: center;
+  animation: floatUp 1s ease-out;
+  box-shadow: 0 0 30px rgba(0,0,0,0.3);
+}
+
+/* Heading */
+.about-glass h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Paragraphs */
+.about-glass p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #000000;
+}
+
+/* Button */
+.btn-glass {
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: none;
+  background: linear-gradient(135deg, #00c9ff, #92fe9d);
+  color: #000;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+.btn-glass:hover {
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes floatUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+.delay { animation-delay: 0.3s; }
+.delay2 { animation-delay: 0.6s; }
+.delay3 { animation-delay: 0.9s; }
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .about-glass h2 {
+    font-size: 2rem;
+  }
+  .about-glass p {
+    font-size: 1rem;
+  }
+}
+
+.products {
+  padding: 80px 20px;
+  background: #0d0d0d;
+  color: #fff;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  background: linear-gradient(90deg, #00f2fe, #4facfe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.glass-card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  width: 280px;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.glass-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+.glass-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-content h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #00f2fe;
+}
+
+.card-content p {
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  color: #ccc;
+}
+
+.location {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.btn-buy {
+  padding: 8px 15px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #00c9ff, #92fe9d);
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btn-buy:hover {
+  background: linear-gradient(135deg, #92fe9d, #00c9ff);
+}
+
+@media (max-width: 992px) {
+  .glass-card {
+    width: 45%;
+  }
+}
+
+@media (max-width: 600px) {
+  .glass-card {
+    width: 100%;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="navbar">
+      <div class="logo">👓 GlassesHub</div>
+      <div class="menu-toggle" id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul id="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Collections</a></li>
+        <li><a href="#">Offers</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  
+  <!-- Carousel Start -->
+  <div id="glassesCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <img src="https://p3.pikrepo.com/preview/785/188/gold-framed-eyeglasses-round-eyeglasses-gold-frames-stylish-eyeglasses-white-background-eyewear-glasses-optical-frames-fashion-accessories-vision-wear.jpg" class="d-block w-100" alt="Stylish Glasses">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Discover the Trend</h5>
+          <p>Upgrade your vision with premium style 👓</p>
+          <a href="https://wa.me/923709703473" target="_blank" class="btn btn-success">WhatsApp Us</a>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <img src="https://p3.pikrepo.com/preview/634/875/black-framed-eyeglasses-black-surface-wooden-frame-glasses-dark-fabric-soft-focus-background-close-up-fashionable-glasses-black-and-wooden-frame-eyewear-optical-glasses-thumbnail.jpg" class="d-block w-100" alt="Fashion Eyewear">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Stylish Eyewear</h5>
+          <p>Comfort meets elegance — shop now</p>
+          <a href="https://wa.me/923709703473" target="_blank" class="btn btn-success">WhatsApp Us</a>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <img src="https://avatars.mds.yandex.net/i?id=6754c73dc6fc775edf94cae2ca1840cd07b8688c-5845211-images-thumbs&n=13" class="d-block w-100" alt="Glasses Collection">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Shop the New Collection</h5>
+          <p>Explore luxury, style & comfort in one frame</p>
+          <a href="https://wa.me/923709703473" target="_blank" class="btn btn-success">WhatsApp Us</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#glassesCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#glassesCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+  <!-- Carousel End -->
+
+<section class="about-section">
+  <div class="about-glass">
+    <h2 class="animate">About Us</h2>
+    <p class="animate delay">
+      Welcome to <strong>Visionary Optics</strong> – your ultimate destination for stylish, high-quality eyewear. 
+      We believe glasses aren't just about vision – they're about personality, confidence, and making a statement.
+    </p>
+    <p class="animate delay2">
+      With a wide range of designer frames, blue light glasses, and prescription lenses, we help you 
+      see better and look sharper. Join thousands of happy customers who trust us with their eyes.
+    </p>
+    <a href="https://wa.me/923709703473" target="_blank" class="btn-glass animate delay3">Contact Us on WhatsApp</a>
+  </div>
+</section>
+
+
+<section class="products">
+  <h2 class="section-title">Our Glasses Collection</h2>
+  <div class="cards-container">
+    
+    <!-- CARD 1 -->
+    <div class="glass-card">
+      <img src="https://plus.unsplash.com/premium_photo-1672239496290-5061cfee7ebb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Z2xhc3Nlc3xlbnwwfHwwfHx8MA%3D%3D" alt="Glasses">
+      <div class="card-content">
+        <h3>Classic Frame</h3>
+        <p>Elegant unisex frame with crystal-clear lenses. Lightweight & durable.</p>
+        <p class="location">📍 Karachi</p>
+        <div class="card-footer">
+          <span class="price">Rs. 3,500</span>
+          <a href="https://wa.me/923709703473?text=I'm%20interested%20in%20Classic%20Frame" target="_blank" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="glass-card">
+      <img src="https://images.unsplash.com/photo-1524255684952-d7185b509571?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z2xhc3Nlc3xlbnwwfHwwfHx8MA%3D%3D" alt="Glasses">
+      <div class="card-content">
+        <h3>Modern Square</h3>
+        <p>Trendy square frame for daily wear with blue light protection.</p>
+        <p class="location">📍 Lahore</p>
+        <div class="card-footer">
+          <span class="price">Rs. 4,200</span>
+          <a href="https://wa.me/923709703473?text=I'm%20interested%20in%20Modern%20Square" target="_blank" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="glass-card">
+      <img src="https://images.unsplash.com/photo-1524255684952-d7185b509571?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z2xhc3Nlc3xlbnwwfHwwfHx8MA%3D%3D" alt="Glasses">
+      <div class="card-content">
+        <h3>Modern Square</h3>
+        <p>Trendy square frame for daily wear with blue light protection.</p>
+        <p class="location">📍 Lahore</p>
+        <div class="card-footer">
+          <span class="price">Rs. 4,200</span>
+          <a href="https://wa.me/923709703473?text=I'm%20interested%20in%20Modern%20Square" target="_blank" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="glass-card">
+      <img src="https://images.unsplash.com/photo-1524255684952-d7185b509571?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z2xhc3Nlc3xlbnwwfHwwfHx8MA%3D%3D" alt="Glasses">
+      <div class="card-content">
+        <h3>Modern Square</h3>
+        <p>Trendy square frame for daily wear with blue light protection.</p>
+        <p class="location">📍 Lahore</p>
+        <div class="card-footer">
+          <span class="price">Rs. 4,200</span>
+          <a href="https://wa.me/923709703473?text=I'm%20interested%20in%20Modern%20Square" target="_blank" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="glass-card">
+      <img src="https://images.unsplash.com/photo-1524255684952-d7185b509571?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z2xhc3Nlc3xlbnwwfHwwfHx8MA%3D%3D" alt="Glasses">
+      <div class="card-content">
+        <h3>Modern Square</h3>
+        <p>Trendy square frame for daily wear with blue light protection.</p>
+        <p class="location">📍 Lahore</p>
+        <div class="card-footer">
+          <span class="price">Rs. 4,200</span>
+          <a href="https://wa.me/923709703473?text=I'm%20interested%20in%20Modern%20Square" target="_blank" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="glass-card">
+      <img src="https://images.unsplash.com/photo-1524255684952-d7185b509571?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z2xhc3Nlc3xlbnwwfHwwfHx8MA%3D%3D" alt="Glasses">
+      <div class="card-content">
+        <h3>Modern Square</h3>
+        <p>Trendy square frame for daily wear with blue light protection.</p>
+        <p class="location">📍 Lahore</p>
+        <div class="card-footer">
+          <span class="price">Rs. 4,200</span>
+          <a href="https://wa.me/923709703473?text=I'm%20interested%20in%20Modern%20Square" target="_blank" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="glass-card">
+      <img src="https://images.unsplash.com/photo-1524255684952-d7185b509571?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z2xhc3Nlc3xlbnwwfHwwfHx8MA%3D%3D" alt="Glasses">
+      <div class="card-content">
+        <h3>Modern Square</h3>
+        <p>Trendy square frame for daily wear with blue light protection.</p>
+        <p class="location">📍 Lahore</p>
+        <div class="card-footer">
+          <span class="price">Rs. 4,200</span>
+          <a href="https://wa.me/923709703473?text=I'm%20interested%20in%20Modern%20Square" target="_blank" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="glass-card">
+      <img src="https://images.unsplash.com/photo-1524255684952-d7185b509571?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z2xhc3Nlc3xlbnwwfHwwfHx8MA%3D%3D" alt="Glasses">
+      <div class="card-content">
+        <h3>Modern Square</h3>
+        <p>Trendy square frame for daily wear with blue light protection.</p>
+        <p class="location">📍 Lahore</p>
+        <div class="card-footer">
+          <span class="price">Rs. 4,200</span>
+          <a href="https://wa.me/923709703473?text=I'm%20interested%20in%20Modern%20Square" target="_blank" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="glass-card">
+      <img src="https://images.unsplash.com/photo-1524255684952-d7185b509571?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Z2xhc3Nlc3xlbnwwfHwwfHx8MA%3D%3D" alt="Glasses">
+      <div class="card-content">
+        <h3>Modern Square</h3>
+        <p>Trendy square frame for daily wear with blue light protection.</p>
+        <p class="location">📍 Lahore</p>
+        <div class="card-footer">
+          <span class="price">Rs. 4,200</span>
+          <a href="https://wa.me/923709703473?text=I'm%20interested%20in%20Modern%20Square" target="_blank" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="glass-card">
+      <img src="https://images.unsplash.com/photo-1614715838608-dd527c46231d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Z2xhc3Nlc3xlbnwwfHwwfHx8MA%3D%3D" alt="Glasses">
+      <div class="card-content">
+        <h3>Black Aviator</h3>
+        <p>Stylish aviator frame with tinted lens. Sleek and bold look.</p>
+        <p class="location">📍 Islamabad</p>
+        <div class="card-footer">
+          <span class="price">Rs. 5,000</span>
+          <a href="https://wa.me/923709703473?text=I'm%20interested%20in%20Black%20Aviator" target="_blank" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="glass-card">
+      <img src="https://plus.unsplash.com/premium_photo-1683543124406-ff29013727f2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Z2xhc3Nlc3xlbnwwfHwwfHx8MA%3D%3D" alt="Glasses">
+      <div class="card-content">
+        <h3>Retro Round</h3>
+        <p>Round retro-style frame for a vintage aesthetic lovers.</p>
+        <p class="location">📍 Islamabad</p>
+        <div class="card-footer">
+          <span class="price">Rs. 3,800</span>
+          <a href="https://images.unsplash.com/photo-1534078477103-9f6a18b3a5e2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGdsYXNzZXN8ZW58MHx8MHx8fDA%3D" target="_blank" class="btn-buy">Buy Now</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<footer id="footer" style="background: #111; color: #fff; padding: 50px 20px; text-align: center;">
+  <div id="footer-container" style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;">
+    <div id="footer-content" style="flex: 1;">
+      <h2 id="footer-title" style="font-size: 2rem; margin-bottom: 10px; font-weight: bold; color: #00f2fe;">Visionary Optics</h2>
+      <p id="footer-description" style="font-size: 1.1rem; color: #bbb;">Your go-to destination for stylish eyewear. See better, look sharper!</p>
+      <ul id="footer-links" style="list-style: none; padding: 0; margin: 20px 0 0 0;">
+        <li id="footer-home" style="display: inline-block; margin: 0 20px;">
+          <a href="#home" id="home-link" style="font-size: 1.2rem; color: #fff; text-decoration: none; position: relative; padding-bottom: 5px; transition: color 0.3s ease;">Home</a>
+        </li>
+        <li id="footer-shop" style="display: inline-block; margin: 0 20px;">
+          <a href="#shop" id="shop-link" style="font-size: 1.2rem; color: #fff; text-decoration: none; position: relative; padding-bottom: 5px; transition: color 0.3s ease;">Shop</a>
+        </li>
+        <li id="footer-about" style="display: inline-block; margin: 0 20px;">
+          <a href="#about" id="about-link" style="font-size: 1.2rem; color: #fff; text-decoration: none; position: relative; padding-bottom: 5px; transition: color 0.3s ease;">About Us</a>
+        </li>
+        <li id="footer-contact" style="display: inline-block; margin: 0 20px;">
+          <a href="#contact" id="contact-link" style="font-size: 1.2rem; color: #fff; text-decoration: none; position: relative; padding-bottom: 5px; transition: color 0.3s ease;">Contact</a>
+        </li>
+      </ul>
+    </div>
+    <div id="footer-socials" style="margin-top: 20px;">
+      <a href="https://www.facebook.com" target="_blank" id="facebook-icon" style="margin: 0 15px; font-size: 1.5rem; color: #fff; transition: transform 0.3s ease;">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://www.instagram.com" target="_blank" id="instagram-icon" style="margin: 0 15px; font-size: 1.5rem; color: #fff; transition: transform 0.3s ease;">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.twitter.com" target="_blank" id="twitter-icon" style="margin: 0 15px; font-size: 1.5rem; color: #fff; transition: transform 0.3s ease;">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- Add FontAwesome CDN for social icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<style>
+#footer-links a:hover {
+  color: #00f2fe;
+}
+
+#footer-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #00f2fe;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-out;
+  transform-origin: right;
+}
+
+#footer-links a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+#footer-socials a:hover {
+  transform: scale(1.1);
+  color: #00f2fe;
+}
+
+@media (max-width: 768px) {
+  #footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #footer-links li {
+    display: block;
+    margin: 10px 0;
+  }
+}
+</style>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
+<!-- This is a simple HTML page with a responsive navigation bar and a welcome message. The navbar includes links to different sections of the site, and the menu can be toggled on smaller screens. -->
+<!-- The page is styled with CSS to create a modern and clean look, using a gradient background and a fixed navbar. The JavaScript adds interactivity to the menu toggle. -->
